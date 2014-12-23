@@ -72,6 +72,6 @@ Controller 샘플
 		@Post("/test.my") //Post requst api
 		public Response sss(Http http) throws IOException {
 			return new Json(new Object()); // 오브젝트넣으면 제이슨 리스폰스
-	}
+		}
 	}
 	
