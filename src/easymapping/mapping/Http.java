@@ -53,4 +53,12 @@ public class Http {
 		resp.setCharacterEncoding(encording);
 	}
 
+	public void sendNotFound() {
+		try {
+			resp.sendError(404, req.getRequestURI());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }

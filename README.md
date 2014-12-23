@@ -43,28 +43,29 @@ web.xml 샘플
 
 Controller 샘플
 	
+	package mytoday.controller;
+		
 	@Controller
 	public class HomeController {
-		private static final Logger logger = LoggerFactory
-				.getLogger(HomeController.class);
 	
 		@Get("/home.my")
-		public Response home(Http http) { //Response를 리턴해야함
-			logger.debug("home");
+		public Response home() {
 			return new Jsp("home.jsp");
 		}
 	
-		@Get("/index/{}.my")     // {}변수 받을 수 잇고.
-		public Response ss(Http http) {
-			System.out.println(http.getUriVariable(0));
+		@Get("/index/{}.my")
+		public Response index(Http http) throws IOException {
+			http.getUriVariable(0); // returns {}value
+			http.getReq(); // servlet Request
+			http.getReq().getRequestURI();
+			http.getResp(); // servlet Response
+			http.getResp().getWriter();
 			return new Jsp("home.jsp");
 		}
 	
-		@Get("/test.my")
+		@Post("/test.my") //Post requst api
 		public Response sss(Http http) throws IOException {
-			
 			return new Json("고로니");
-		}
-	
+	}
 	}
 	
