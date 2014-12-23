@@ -50,7 +50,10 @@ Controller 샘플
 	
 		@Get("/home.my")
 		public Response home() {
-			return new Jsp("home.jsp");
+			Jsp jsp = new Jsp("home.jsp");
+			String userName = "name";
+			jsp.put("user", userName); //jsp에서 ${user}로 사용
+			return jsp;
 		}
 	
 		@Get("/index/{}.my")
