@@ -27,7 +27,7 @@ web.xml 샘플
 	
 		<servlet-mapping>
 			<servlet-name>easymapping</servlet-name>
-			<url-pattern>*.easy</url-pattern>
+			<url-pattern>*.my</url-pattern>
 		</servlet-mapping>
 	
 		<welcome-file-list>
