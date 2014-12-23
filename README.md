@@ -1,6 +1,8 @@
 컨트롤러를 쉽게.
 ===========
 
+[easymapping-0.0.1.jar](http://mylikenews.com/easymapping-0.0.1.jar)
+
 Json형식으로 WEB-INF/controller.setting 파일을 읽음
 
 	{
@@ -11,7 +13,8 @@ Json형식으로 WEB-INF/controller.setting 파일을 읽음
 	}
 	
 	
-web.xml 샘플
+web.xml 에서 디스패처 서블릿을 매핑.
+샘플 --
 
 	<?xml version="1.0" encoding="UTF-8"?>
 	<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
