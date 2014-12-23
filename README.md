@@ -4,10 +4,10 @@
 Json형식으로 WEB-INF/controller.setting 파일을 읽음
 
 	{
-		"url" : "http://localhost:8080",
-		"controllerPath" : "mytoday.controller",
-		"jspPath" : "/jsp/",
-		"charEncoding" : "utf-8"
+		"url" : "http://localhost:8080", //사이트 주소
+		"controllerPath" : "mytoday.controller", // 컨트롤러 패키지
+		"jspPath" : "/jsp/", //jsp패스
+		"charEncoding" : "utf-8" //캐릭터 인코딩
 	}
 	
 	
@@ -35,3 +35,36 @@ web.xml 샘플
 		</welcome-file-list>
 	</web-app>
 
+어노테이션 -------------
+	
+	@Controller // 클래스에 선언
+	@Get("겟주소") // 메소드에 선언
+	@Post("post 주소") //메소드에 선언
+
+Controller 샘플
+	
+	@Controller
+	public class HomeController {
+		private static final Logger logger = LoggerFactory
+				.getLogger(HomeController.class);
+	
+		@Get("/home.my")
+		public Response home(Http http) { //Response를 리턴해야함
+			logger.debug("home");
+			return new Jsp("home.jsp");
+		}
+	
+		@Get("/index/{}.my")     // {}변수 받을 수 잇고.
+		public Response ss(Http http) {
+			System.out.println(http.getUriVariable(0));
+			return new Jsp("home.jsp");
+		}
+	
+		@Get("/test.my")
+		public Response sss(Http http) throws IOException {
+			
+			return new Json("고로니");
+		}
+	
+	}
+	
