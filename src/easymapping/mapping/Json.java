@@ -7,6 +7,7 @@ import com.google.gson.Gson;
 public class Json implements Response{
 	
 	private Object jsonObj;
+	Gson gson = new Gson();
 
 	public Json(Object obj){
 		this.jsonObj = obj;
@@ -14,8 +15,12 @@ public class Json implements Response{
 	
 	@Override
 	public void render(Http http) throws IOException {
-		Gson gson = new Gson();
 		http.setContentType("application/json");
 		http.write(gson.toJson(jsonObj));
+	}
+
+	@Override
+	public String getRenderedText() {
+		return gson.toJson(jsonObj);
 	}
 }

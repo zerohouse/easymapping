@@ -32,4 +32,9 @@ public class Jsp implements Response {
 		http.forword(jspPath + jspFile);
 	}
 
+	@Override
+	public String getRenderedText() {
+		return "Jsp [jspFile=" + jspFile + ", keys=" + keys + ", objs=" + objs + "]";
+	}
+
 }
