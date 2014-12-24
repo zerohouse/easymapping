@@ -10,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 public class Http {
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
@@ -21,6 +23,15 @@ public class Http {
 
 	public HttpServletResponse getResp() {
 		return resp;
+	}
+	
+	public <T> Object getJsonObject(Class<T> cLass, String name){
+		return new Gson().fromJson(req.getParameter(name), cLass);
+	}
+	
+	public <T> Object getJsonObject(Class<T> cLass){
+		Gson gson = new Gson();
+		return gson.fromJson(gson.toJson(req.getParameterMap()), cLass);
 	}
 	
 	public String getParameter(String name){

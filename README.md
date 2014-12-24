@@ -66,6 +66,11 @@ Controller 샘플
 			http.getReq().getRequestURI();
 			http.getResp(); // servlet Response
 			http.getResp().getWriter();
+			http.getParameter("name"); // return String param;
+			http.getParameterMap(); // return Map<String, String[]> parametermap
+			http.getJsonObject(User.class, "user"); //return user object parsing parameter > user
+			http.getJsonObject(User.class); //return user object parameterString
+			 
 			return new Jsp("home.jsp");
 		}
 	
