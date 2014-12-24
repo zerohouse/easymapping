@@ -34,6 +34,7 @@ public class HttpTest {
 
 	@Test
 	public void test() {
+		TestClass test = http.getJsonObject(TestClass.class);
 		assertEquals(http.getJsonObject(TestClass.class), test);
 		assertEquals(http.getJsonObject(TestClass.class, "test"), test);
 	}

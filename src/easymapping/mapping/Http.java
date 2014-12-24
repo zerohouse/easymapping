@@ -25,11 +25,11 @@ public class Http {
 		return resp;
 	}
 	
-	public <T> Object getJsonObject(Class<T> cLass, String name){
+	public <T> T getJsonObject(Class<T> cLass, String name){
 		return new Gson().fromJson(req.getParameter(name), cLass);
 	}
 	
-	public <T> Object getJsonObject(Class<T> cLass){
+	public <T> T getJsonObject(Class<T> cLass){
 		Gson gson = new Gson();
 		return gson.fromJson(gson.toJson(req.getParameterMap()), cLass);
 	}
