@@ -9,15 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import easymapping.response.Response;
 import easymapping.setting.Setting;
 
 public class Dispatcher extends HttpServlet {
-
-	private static final Logger logger = LoggerFactory.getLogger(Dispatcher.class);
 
 	/**
 	 * 
@@ -43,7 +38,7 @@ public class Dispatcher extends HttpServlet {
 		}
 
 		String encording = Setting.get(Setting.ENCORDING);
-		if (Setting.get(Setting.ENCORDING) != null)
+		if (encording != null)
 			http.setCharacterEncoding(encording);
 		if (holder.isParamExist()) {
 			http.setParams(holder.getParams());
@@ -59,7 +54,7 @@ public class Dispatcher extends HttpServlet {
 				render = (Response) method.invoke(instance, http);
 			render.render(http);
 		} catch (Exception e) {
-			logger.debug(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

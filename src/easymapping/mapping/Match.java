@@ -20,6 +20,11 @@ public class Match {
 		match.put(key, method);
 	}
 
+	@Override
+	public String toString() {
+		return "MatchedURL :" + match;
+	}
+
 	public ParamHolder get(String key) {
 		Method method = match.get(key);
 		if (method != null)

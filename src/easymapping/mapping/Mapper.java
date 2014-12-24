@@ -7,12 +7,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import easymapping.annotation.Controller;
 import easymapping.annotation.Get;
 import easymapping.annotation.Post;
 import easymapping.setting.Setting;
 
-public class Mapper {
+class Mapper {
+
+	private static final Logger logger = LoggerFactory.getLogger(Mapper.class);
 
 	public static final String GET = "get";
 	public static final String POST = "post";
@@ -27,6 +32,7 @@ public class Mapper {
 	private Match postMap = new Match();
 
 	public static ParamHolder get(String type, String url) {
+		logger.debug("requested URI = " + url);
 		switch (type) {
 		case GET:
 			return instance.getMap.get(url);
@@ -37,18 +43,17 @@ public class Mapper {
 		}
 	}
 
-	private Mapper() {
+	Mapper() {
 		setMap();
+		logger.info("getMap : " + getMap);
+		logger.info("postMap : " + postMap);
 	}
-
 
 	public List<Class<?>> find(String scannedPackage) {
 		String scannedPath = scannedPackage.replace(DOT, SLASH);
-		URL scannedUrl = Thread.currentThread().getContextClassLoader()
-				.getResource(scannedPath);
+		URL scannedUrl = Thread.currentThread().getContextClassLoader().getResource(scannedPath);
 		if (scannedUrl == null) {
-			throw new IllegalArgumentException(String.format(BAD_PACKAGE_ERROR,
-					scannedPath, scannedPackage));
+			throw new IllegalArgumentException(String.format(BAD_PACKAGE_ERROR, scannedPath, scannedPackage));
 		}
 		File scannedDir = new File(scannedUrl.getFile());
 		List<Class<?>> classes = new ArrayList<Class<?>>();

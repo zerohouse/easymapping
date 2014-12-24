@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 public class Http {
+
 	private HttpServletRequest req;
 	private HttpServletResponse resp;
 	private ArrayList<String> params;
@@ -24,21 +25,22 @@ public class Http {
 	public HttpServletResponse getResp() {
 		return resp;
 	}
-	
-	public <T> T getJsonObject(Class<T> cLass, String name){
+
+	public <T> T getJsonObject(Class<T> cLass, String name) {
 		return new Gson().fromJson(req.getParameter(name), cLass);
+
 	}
-	
-	public <T> T getJsonObject(Class<T> cLass){
+
+	public <T> T getJsonObject(Class<T> cLass) {
 		Gson gson = new Gson();
 		return gson.fromJson(gson.toJson(req.getParameterMap()), cLass);
 	}
-	
-	public String getParameter(String name){
+
+	public String getParameter(String name) {
 		return req.getParameter(name);
 	}
-	
-	public Map<String, String[]> getParameterMap(){
+
+	public Map<String, String[]> getParameterMap() {
 		return req.getParameterMap();
 	}
 
@@ -63,8 +65,8 @@ public class Http {
 	public void setParams(ArrayList<String> params) {
 		this.params = params;
 	}
-	
-	public String getUriVariable(int number){
+
+	public String getUriVariable(int number) {
 		return params.get(number);
 	}
 
