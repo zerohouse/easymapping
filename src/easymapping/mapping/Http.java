@@ -3,6 +3,7 @@ package easymapping.mapping;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,6 +21,14 @@ public class Http {
 
 	public HttpServletResponse getResp() {
 		return resp;
+	}
+	
+	public String getParameter(String name){
+		return req.getParameter(name);
+	}
+	
+	public Map<String, String[]> getParameterMap(){
+		return req.getParameterMap();
 	}
 
 	public Http(HttpServletRequest req, HttpServletResponse resp) {

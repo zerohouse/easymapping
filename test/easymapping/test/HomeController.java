@@ -2,7 +2,6 @@ package easymapping.test;
 
 import java.io.IOException;
 
-
 import easymapping.annotation.Controller;
 import easymapping.annotation.Get;
 import easymapping.annotation.Post;
