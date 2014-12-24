@@ -52,6 +52,8 @@ public class Dispatcher extends HttpServlet {
 				render = (Response) method.invoke(instance);
 			else
 				render = (Response) method.invoke(instance, http);
+			if(render==null)
+				return;
 			render.render(http);
 		} catch (Exception e) {
 			e.printStackTrace();

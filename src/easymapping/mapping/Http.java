@@ -83,4 +83,45 @@ public class Http {
 		}
 	}
 
+	public void setSessionAttribute(String name, Object value){
+		req.getSession().setAttribute(name, value);
+	}
+	
+	public void removeSessionAttribute(String name){
+		req.getSession().removeAttribute(name);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public <T> T getSessionAttribute(Class<T> cLass, String name){
+		return (T) req.getSession().getAttribute(name);
+	}
+	
+	public Object getSessionAttribute(String name){
+		return req.getSession().getAttribute(name);
+	}
+	
+	public void sendRedirect(String location){
+		try {
+			resp.sendRedirect(location);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendError(int errorNo){
+		try {
+			resp.sendError(errorNo);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sendError(int errorNo, String errorMesage){
+		try {
+			resp.sendError(errorNo, errorMesage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 }
