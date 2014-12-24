@@ -10,6 +10,13 @@ public class Json implements Response {
 
 	private Object jsonObj;
 
+	public Json(){
+	}
+	
+	public void setJsonObj(Object jsonObj) {
+		this.jsonObj = jsonObj;
+	}
+
 	public Json(Object obj) {
 		this.jsonObj = obj;
 	}

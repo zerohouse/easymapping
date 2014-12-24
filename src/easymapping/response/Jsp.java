@@ -13,23 +13,19 @@ public class Jsp implements Response {
 
 	private static final String jspPath = Setting.get(Setting.JSP);
 	private String jspFileName;
-	public String getJspFileName() {
-		return jspFileName;
-	}
-
-	public List<String> getKeys() {
-		return keys;
-	}
-
-	public List<Object> getObjs() {
-		return objs;
-	}
 
 	private List<String> keys = new ArrayList<String>();
 	private List<Object> objs = new ArrayList<Object>();
 
-	public Jsp(String jspFile) {
-		this.jspFileName = jspFile;
+	public Jsp() {
+	}
+
+	public void setJspFileName(String jspFileName) {
+		this.jspFileName = jspFileName;
+	}
+
+	public Jsp(String jspFileName) {
+		this.jspFileName = jspFileName;
 	}
 
 	public void put(String key, Object obj) {
@@ -45,4 +41,15 @@ public class Jsp implements Response {
 		http.forword(jspPath + jspFileName);
 	}
 
+	public String getJspFileName() {
+		return jspFileName;
+	}
+
+	public List<String> getKeys() {
+		return keys;
+	}
+
+	public List<Object> getObjs() {
+		return objs;
+	}
 }
