@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import easymapping.response.Response;
 import easymapping.setting.Setting;
 
 public class Dispatcher extends HttpServlet {

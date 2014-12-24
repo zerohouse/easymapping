@@ -1,4 +1,4 @@
-package easymapping.mapping;
+package easymapping.response;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -6,17 +6,30 @@ import java.util.List;
 
 import javax.servlet.ServletException;
 
+import easymapping.mapping.Http;
 import easymapping.setting.Setting;
 
 public class Jsp implements Response {
 
 	private static final String jspPath = Setting.get(Setting.JSP);
-	private String jspFile;
+	private String jspFileName;
+	public String getJspFileName() {
+		return jspFileName;
+	}
+
+	public List<String> getKeys() {
+		return keys;
+	}
+
+	public List<Object> getObjs() {
+		return objs;
+	}
+
 	private List<String> keys = new ArrayList<String>();
 	private List<Object> objs = new ArrayList<Object>();
 
 	public Jsp(String jspFile) {
-		this.jspFile = jspFile;
+		this.jspFileName = jspFile;
 	}
 
 	public void put(String key, Object obj) {
@@ -29,12 +42,7 @@ public class Jsp implements Response {
 		for (int i = 0; i < keys.size(); i++) {
 			http.getReq().setAttribute(keys.get(i), objs.get(i));
 		}
-		http.forword(jspPath + jspFile);
-	}
-
-	@Override
-	public String getRenderedText() {
-		return "Jsp [jspFile=" + jspFile + ", keys=" + keys + ", objs=" + objs + "]";
+		http.forword(jspPath + jspFileName);
 	}
 
 }

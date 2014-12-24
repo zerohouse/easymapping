@@ -6,9 +6,9 @@ import easymapping.annotation.Controller;
 import easymapping.annotation.Get;
 import easymapping.annotation.Post;
 import easymapping.mapping.Http;
-import easymapping.mapping.Json;
-import easymapping.mapping.Jsp;
-import easymapping.mapping.Response;
+import easymapping.response.Json;
+import easymapping.response.Jsp;
+import easymapping.response.Response;
 
 
 @Controller
