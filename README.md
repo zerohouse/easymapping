@@ -3,6 +3,14 @@
 
 [easymapping-0.0.1.jar](http://mylikenews.com/easymapping-0.0.1.jar)
 
+		<dependency>
+			<groupId>easy</groupId>
+			<artifactId>easymapping</artifactId>
+			<version>0.0.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/easymapping-0.0.1.jar</systemPath>
+		</dependency>
+
 Json형식으로 WEB-INF/controller.setting 파일을 읽음
 
 	{
