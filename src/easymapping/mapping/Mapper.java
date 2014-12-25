@@ -4,7 +4,6 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -32,21 +31,27 @@ class Mapper {
 	private Match postMap = new Match();
 
 	public static ParamHolder get(String type, String url) {
-		logger.debug("requested URI = " + url);
+		ParamHolder holder = null;
 		switch (type) {
 		case GET:
-			return instance.getMap.get(url);
+			holder = instance.getMap.get(url);
+			break;
 		case POST:
-			return instance.postMap.get(url);
-		default:
-			return null;
+			holder = instance.postMap.get(url);
+			break;
 		}
+		if (holder != null) {
+			logger.debug("\n requested URI = " + url + ", matched Method = " + holder.getName());
+		} else {
+			logger.debug("\n requested URI = " + url + ", There is no matched Method");
+		}
+		return holder;
 	}
 
 	Mapper() {
 		setMap();
-		logger.info("getMap : " + getMap);
-		logger.info("postMap : " + postMap);
+		logger.info("getMap\n" + getMap);
+		logger.info("postMap\n" + postMap);
 	}
 
 	public List<Class<?>> find(String scannedPackage) {
@@ -83,23 +88,18 @@ class Mapper {
 
 	private void setMap() {
 		List<Class<?>> types = find(PATH);
-		Iterator<Class<?>> iterator = types.iterator();
-		while (iterator.hasNext()) {
-			controllerSetting(iterator);
-		}
-	}
-
-	private void controllerSetting(Iterator<Class<?>> iterator) {
-		Class<?> eachClass = iterator.next();
-		if (eachClass.isAnnotationPresent(Controller.class)) {
-			methodSetting(eachClass);
-		}
+		types.forEach(type -> {
+			if (type.isAnnotationPresent(Controller.class)) {
+				methodSetting(type);
+			}
+		});
 	}
 
 	private void methodSetting(Class<?> eachClass) {
 		Method methods[] = eachClass.getDeclaredMethods();
 		Get get;
 		Post post;
+
 		for (int i = 0; i < methods.length; i++) {
 			if (methods[i].isAnnotationPresent(Get.class)) {
 				get = methods[i].getAnnotation(Get.class);

@@ -28,4 +28,8 @@ public class ParamHolder {
 		return params.size() > 0;
 	}
 
+	public String getName() {
+		return method.getDeclaringClass().getName() + "." + method.getName();
+	}
+
 }
