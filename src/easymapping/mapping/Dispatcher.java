@@ -23,6 +23,7 @@ public class Dispatcher extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ParamHolder holder = Mapper.get(Mapper.GET, req.getRequestURI());
 		dispatch(holder, new Http(req, resp));
+		
 	}
 
 	@Override
