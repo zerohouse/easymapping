@@ -42,7 +42,7 @@ public class Http {
 		return gson.fromJson(gson.toJson(req.getParameterMap()), cLass);
 	}
 
-	private <T> Gson getGsonBuilder(Class<T> cLass) {
+	private static <T> Gson getGsonBuilder(Class<T> cLass) {
 		Field[] fields = cLass.getDeclaredFields();
 		DateParser parser = new DateParser();
 		
