@@ -22,6 +22,8 @@ public class Setting {
 	private Setting() {
 
 		String path = Setting.class.getResource("/").getPath();
+		
+		System.out.println(path);
 
 		try {
 			JsonReader reader = new JsonReader(new FileReader(path
